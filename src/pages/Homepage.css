@@ -1,0 +1,54 @@
+.swiper-container {
+  width: 100%;
+  height: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  max-width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.container {
+  margin: 20px;
+  border: solid black 2px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.container h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.container p {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 1rem;
+}
+
+.button {
+  background-color: blue;
+  border: solid white 2px;
+  border-radius: 5px;
+  color: white;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease-in;
+  &:hover {
+    background-color: darkblue;
+  }
+}
