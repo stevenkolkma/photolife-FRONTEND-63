@@ -6,6 +6,8 @@ import { showMessageWithTimeout } from "../appState/thunks";
 import { postNewPhotoAction } from "./slice";
 import { loginSuccess, logOut, tokenStillValid } from "./slice";
 
+
+
 export const postNewPhoto = (photoData) => {
   return async (dispatch, getState) => {
     try {

@@ -16,11 +16,7 @@ export const GalleryDetails = () => {
   const token = useSelector(selectToken);
   const galleryDetails = useSelector(selectGalleryDetails);
   const user = useSelector(selectUser);
-  const [state, setState] = useState();
-  console.log(galleryDetails, state);
-  const updateFromChild = () => {
-    setState();
-  };
+
   useEffect(() => {
     dispatch(fetchGalleryDetails(id));
   }, [dispatch, id]);
@@ -33,6 +29,11 @@ export const GalleryDetails = () => {
         <Link to="/photomarket">
           <button>View the photomarket</button>
         </Link>
+        {token && (
+          <Link to="/mygalleries">
+            <button>View my galleries</button>
+          </Link>
+        )}
         <h1>Gallery details of {galleryDetails.name}</h1>
       </div>
       <div className="photos-section">
@@ -41,9 +42,15 @@ export const GalleryDetails = () => {
           <div className="photos-grid">
             {galleryDetails.photos.map((photo, index) => {
               return (
-                <div className="photo-thumbnail" key={index}>
-                  <img src={photo.imageUrl} alt={photo.name} />
-                  <div className="caption">{photo.caption}</div>
+                <div key={index} className="photo-thumbnail">
+                  <PhotoThumbnail
+                    key={index}
+                    id={photo.id}
+                    name={photo.name}
+                    publicId={photo.publicId}
+                    imageUrl={photo.imageUrl}
+                    galleryId={photo.galleryId}
+                  />
                 </div>
               );
             })}
@@ -54,10 +61,7 @@ export const GalleryDetails = () => {
       </div>
       <div className="upload-section">
         {token && user && user.id === galleryDetails.userId ? (
-          <PhotoUpload
-            updateFromChild={updateFromChild}
-            galleryId={galleryDetails.id}
-          />
+          <PhotoUpload galleryId={galleryDetails.id} />
         ) : null}
       </div>
     </div>

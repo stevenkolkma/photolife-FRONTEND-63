@@ -12,14 +12,13 @@ import {
   MyGalleries,
   PhotoMarket,
   GalleryDetails,
-  MyGalleryDetails,
   PhotoDetails,
   ShoppingCart,
   MyProfile,
   UserDetails,
 } from "./pages";
+import { CartPage } from "./components/CartPage";
 import { PhotoUpload } from "./components/PhotoUpload";
-
 function App() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
@@ -44,9 +43,9 @@ function App() {
         <Route path="/gallery/:id" element={<GalleryDetails />} />
         <Route path="/gallery/:id/photos/:id" element={<PhotoDetails />} />
         <Route path="/mygallery" element={<MyGalleries />} />
-        <Route path="/mygallery/:id/photo" element={<MyGalleryDetails />} />
         <Route path="/shoppingcart" element={<ShoppingCart />} />
         <Route path="/upload" element={<PhotoUpload />} />
+        <Route path="/cart" element={<CartPage />} />
         <Route path="/users/:id" element={<UserDetails />} />
         <Route path="/myprofile" element={<MyProfile />} />
       </Routes>

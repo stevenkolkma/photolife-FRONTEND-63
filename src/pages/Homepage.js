@@ -4,8 +4,6 @@ import { LinkWord } from "../styled";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import styled from "styled-components";
-import Swiper from "swiper";
-import { useEffect } from "react";
 import "./Homepage.css";
 
 export const Homepage = () => {
@@ -16,10 +14,13 @@ export const Homepage = () => {
         <Link to="/photomarket">
           <Button>View the photomarket</Button>
         </Link>
-        <Link to={`/mygallery/`}>
+        <Link to="/mygallery/">
           <Button>View my galleries and photos</Button>
         </Link>
         <Link to="/myprofile">
+          <Button>View my profile</Button>
+        </Link>
+        <Link to="/cart">
           <Button>View my profile</Button>
         </Link>
       </Container>

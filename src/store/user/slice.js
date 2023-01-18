@@ -4,6 +4,7 @@ const initialState = {
   token: localStorage.getItem("token"),
   profile: null,
   myGalleries: [],
+  myGalleryDetails: [],
 };
 
 export const userSlice = createSlice({

@@ -20,7 +20,7 @@ export const gallerySlice = createSlice({
       state.photoDetails = action.payload;
     },
     postNewPhotoAction: (state, action) => {
-      const updatedGallery = state.myGalleries.map((gallery) => {
+      const updatedGallery = state.galleryDetails.map((gallery) => {
         if (gallery.id === action.payload.galleryId) {
           return {
             ...gallery,
@@ -29,10 +29,10 @@ export const gallerySlice = createSlice({
         }
         return gallery;
       });
-      state.myGalleries = updatedGallery;
+      state.galleryDetails = updatedGallery;
     },
     updatePhotoAction: (state, action) => {
-      const updatedGallery = state.myGalleries.map((gallery) => {
+      const updatedGallery = state.galleryDetails.map((gallery) => {
         if (gallery.id === action.payload.galleryId) {
           return {
             ...gallery,
@@ -46,10 +46,10 @@ export const gallerySlice = createSlice({
         }
         return gallery;
       });
-      state.myGalleries = updatedGallery;
+      state.galleryDetails = updatedGallery;
     },
     deletePhotoAction: (state, action) => {
-      const updatedGallery = state.myGalleries.map((gallery) => {
+      const updatedGallery = state.galleryDetails.map((gallery) => {
         if (gallery.id === action.payload.galleryId) {
           return {
             ...gallery,
@@ -60,7 +60,7 @@ export const gallerySlice = createSlice({
         }
         return gallery;
       });
-      state.myGalleries = updatedGallery;
+      state.galleryDetails = updatedGallery;
     },
   },
 });

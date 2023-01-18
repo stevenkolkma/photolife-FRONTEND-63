@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPhotoDetails } from "../store/gallery/thunks";
 import { selectPhotoDetails } from "../store/gallery/selectors";
-import { addToCart } from "../store/cart/slice";
+import { addToCart, removeFromCart } from "../store/cart/slice";
 export const PhotoDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -18,6 +18,9 @@ export const PhotoDetails = () => {
 
   const handleAddToCart = () => {
     dispatch(addToCart(photoDetails));
+  };
+  const handleRemoveToCart = () => {
+    dispatch(removeFromCart(photoDetails));
   };
 
   return (
@@ -42,6 +45,9 @@ export const PhotoDetails = () => {
       <div className="add-to-cart-container">
         <button onClick={handleAddToCart} className="add-to-cart-button">
           Add to Cart
+        </button>
+        <button onClick={handleRemoveToCart} className="remove-to-cart-button">
+          Remove to Cart
         </button>
       </div>
     </div>
