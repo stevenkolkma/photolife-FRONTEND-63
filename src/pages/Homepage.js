@@ -1,28 +1,40 @@
 import { Title } from "../styled";
 import { Link } from "react-router-dom";
-import { LinkWord } from "../styled";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import styled from "styled-components";
 import "./Homepage.css";
+import { useEffect } from "react";
+import { fetchAllGalleries } from "../store/gallery/thunks";
+import { useDispatch, useSelector } from "react-redux";
+
+import { Banner } from "../components";
 
 export const Homepage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllGalleries());
+  }, [dispatch]);
+
   return (
     <div>
+      <Banner />
       <Container>
+        <Title>Hi</Title>
         <Hero />
         <Link to="/photomarket">
           <Button>View the photomarket</Button>
         </Link>
-        <Link to="/mygallery/">
+        {/* <Link to="/mygallery/">
           <Button>View my galleries and photos</Button>
         </Link>
         <Link to="/myprofile">
           <Button>View my profile</Button>
         </Link>
-        <Link to="/cart">
+        <Link to="/signip">
           <Button>View my profile</Button>
-        </Link>
+        </Link> */}
       </Container>
       <Footer />
     </div>

@@ -1,4 +1,7 @@
 .container-photodetailspage {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -10,6 +13,7 @@
   margin-bottom: 12px;
   width: 100%;
   text-align: center;
+  font-weight: bold;
 }
 
 .subtitle {
@@ -23,11 +27,13 @@
   width: 100%;
   margin-bottom: 24px;
   display: flex;
+  align-items: center;
 }
 
 .photo-img {
-  max-width: 90%;
-  max-height: 70vh;
+  /* width: 60%;
+  height: 70vh; */
+  object-fit: cover;
 }
 
 .photo-meta-data {
@@ -35,53 +41,49 @@
   background-color: #f1f1f1;
   border-radius: 4px;
   box-shadow: 0px 0px 4px 0px #ccc;
+  width: 40%;
+  margin-left: 20px;
+  font-size: 18px;
+  /* display: flex;
+  flex-wrap: wrap; */
+  align-items: center;
+  justify-content: center;
 }
 
 .add-to-cart-container {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: auto;
+  margin-top: 24px;
 }
 
 .add-to-cart-button {
-  padding: 12px 24px;
-  font-size: 18px;
-  background-color: #007bff;
+  background-color: #0099ff;
   color: white;
+  padding: 12px 24px;
   border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
+  transition: all 0.2s ease;
+  &:hover {
+    background-color: #0066cc;
+  }
 }
 
-.add-to-cart-button:hover {
-  background-color: #0069d9;
-}
+button {
+  background-color: #ff0000;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
 
-@media (min-width: 768px) {
-  .container-photodetailspage {
-    flex-direction: row;
-  }
-
-  .photo-container {
-    width: 60%;
-  }
-
-  .photo-img {
-    width: 100%;
-    max-height: 90vh;
-  }
-
-  .photo-meta-data {
-    width: 40%;
-    padding: 20px;
-    background-color: #f1f1f1;
-    border-radius: 4px;
-    box-shadow: 0px 0px 4px 0px #ccc;
-    margin-left: 20px;
-  }
-
-  .add-to-cart-container {
-    justify-content: flex-end;
-    margin-top: auto;
+  &:hover {
+    background-color: #cc0000;
   }
 }

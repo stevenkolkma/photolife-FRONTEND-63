@@ -9,11 +9,12 @@ export const PhotoUpload = (props) => {
   const [name, setName] = useState("");
   const [caption, setCaption] = useState("");
   const [metaData, setMetaData] = useState("");
+  const [price, setPrice] = useState(0);
   const [fileSelected, setFileSelected] = useState("");
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const galleryDetails = useSelector(selectGalleryDetails);
-  console.log(name, caption, metaData, fileSelected);
+  // console.log(name, caption, metaData, fileSelected);
 
   const uploadImage = async (event) => {
     const files = event.target.files;
@@ -35,14 +36,21 @@ export const PhotoUpload = (props) => {
       console.log("error", err);
     }
   };
-
-  const onSubmit = async (e) => {
+  function refreshPage() {
+    window.location.reload(false);
+  }
+  const onSubmit = (e) => {
     e.preventDefault();
+    if (!fileSelected) {
+      alert("Please select a file before uploading");
+      return;
+    }
     const galleryId = galleryDetails.id;
     const photoData = {
       name,
       caption,
       metaData,
+      price,
       imageUrl: fileSelected.url,
       publicId: fileSelected.public_id,
       galleryId: galleryId,
@@ -50,7 +58,7 @@ export const PhotoUpload = (props) => {
     };
     console.log("photoData", photoData);
     dispatch(postNewPhoto(photoData));
-    props.updateFromChild();
+    refreshPage();
   };
 
   return (
@@ -82,9 +90,17 @@ export const PhotoUpload = (props) => {
           />
         </label>
         <label>
+          Price:
+          <input
+            type="number"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+        </label>
+        <label>
           <input type="file" onChange={uploadImage} />
         </label>
-        <input type="submit" onClick={onSubmit} value="Upload" />
+        <input type="submit" onClick={() => onSubmit} value="Upload" />
       </form>
     </div>
   );

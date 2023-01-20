@@ -1,5 +1,5 @@
-/* PhotoThumbnail component */
-.photo-thumbnail {
+/* userThumbnail component */
+.user-thumbnail {
   width: 200px;
   height: 200px;
   display: flex;
@@ -13,23 +13,23 @@
   text-align: center;
 }
 
-.photo-thumbnail img {
+.user-thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.photo-thumbnail h1 {
+.user-thumbnail h1 {
   font-size: 24px;
   margin-bottom: 12px;
   width: 100%;
 }
 
-.photo-thumbnail p {
+.user-thumbnail p {
   margin: 0;
 }
 
-.photo-thumbnail button {
+.user-thumbnail button {
   padding: 0.5rem 1rem;
   font-size: 16px;
   background-color: #007bff;
@@ -38,6 +38,6 @@
   cursor: pointer;
 }
 
-.photo-thumbnail button:hover {
+.user-thumbnail button:hover {
   background-color: #0069d9;
 }

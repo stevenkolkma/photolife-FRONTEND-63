@@ -4,7 +4,8 @@ const initialState = {
   token: localStorage.getItem("token"),
   profile: null,
   myGalleries: [],
-  myGalleryDetails: [],
+  allUsers: [],
+  userDetails: [],
 };
 
 export const userSlice = createSlice({
@@ -27,65 +28,27 @@ export const userSlice = createSlice({
       state.profile = action.payload.user;
       state.myGalleries = action.payload.myGalleries;
     },
+    setAllUsers: (state, action) => {
+      state.allUsers = action.payload;
+    },
+    setUserDetails: (state, action) => {
+      state.userDetails = action.payload;
+    },
     postNewGalleryAction: (state, action) => {
       state.myGalleries = [...state.myGalleries, action.payload];
     },
     updateGalleryAction: (state, action) => {
-      const updatedGalleries = state.myGalleries.map((gallery) => {
+      state.myGalleries = state.myGalleries.map((gallery) => {
         if (gallery.id === action.payload.id) {
           return action.payload;
         }
         return gallery;
       });
-      state.myGalleries = updatedGalleries;
     },
     deleteGalleryAction: (state, action) => {
       state.myGalleries = state.myGalleries.filter(
         (gallery) => gallery.id !== action.payload
       );
-    },
-    postNewPhotoAction: (state, action) => {
-      const updatedGallery = state.myGalleries.map((gallery) => {
-        if (gallery.id === action.payload.galleryId) {
-          return {
-            ...gallery,
-            photos: [...gallery.photos, action.payload.photo],
-          };
-        }
-        return gallery;
-      });
-      state.myGalleries = updatedGallery;
-    },
-    updatePhotoAction: (state, action) => {
-      const updatedGallery = state.myGalleries.map((gallery) => {
-        if (gallery.id === action.payload.galleryId) {
-          return {
-            ...gallery,
-            photos: gallery.photos.map((photo) => {
-              if (photo.id === action.payload.photo.id) {
-                return action.payload.photo;
-              }
-              return photo;
-            }),
-          };
-        }
-        return gallery;
-      });
-      state.myGalleries = updatedGallery;
-    },
-    deletePhotoAction: (state, action) => {
-      const updatedGallery = state.myGalleries.map((gallery) => {
-        if (gallery.id === action.payload.galleryId) {
-          return {
-            ...gallery,
-            photos: gallery.photos.filter(
-              (photo) => photo.id !== action.payload.photoId
-            ),
-          };
-        }
-        return gallery;
-      });
-      state.myGalleries = updatedGallery;
     },
   },
 });
@@ -94,12 +57,11 @@ export const {
   loginSuccess,
   logOut,
   tokenStillValid,
+  setAllUsers,
+  setUserDetails,
   postNewGalleryAction,
-  postNewPhotoAction,
   updateGalleryAction,
-  updatePhotoAction,
   deleteGalleryAction,
-  deletePhotoAction,
 } = userSlice.actions;
 
 export default userSlice.reducer;

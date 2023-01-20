@@ -1,7 +1,7 @@
 import { apiUrl } from "../../config/constants";
 import axios from "axios";
 import { setAllGalleries, setGalleryDetails, setPhotoDetails } from "./slice";
-import { appLoading, appDoneLoading, setMessage } from "../appState/slice";
+import { appLoading, appDoneLoading } from "../appState/slice";
 
 //GET request for all galleries
 export const fetchAllGalleries = () => async (dispatch, getState) => {

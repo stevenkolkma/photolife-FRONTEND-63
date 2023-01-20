@@ -3,11 +3,11 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectToken } from "../store/user/selectors";
 import { logOut } from "../store/user/slice";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 export const Navigation = () => {
   const [open, setOpen] = useState(false);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const token = useSelector(selectToken);
@@ -26,10 +26,17 @@ export const Navigation = () => {
         <MenuLink to="/photomarket">See PhotoMarket</MenuLink>
         {token ? (
           <div>
-            <MenuLink to="/mygallery">My Galleries and Photos</MenuLink>
-            <MenuLink to="/upload">Upload</MenuLink>
+            <MenuLink to="/mygallery">My Galleries</MenuLink>
+            <MenuLink to="/myprofile">My Profile</MenuLink>
             <MenuLink to="/shoppingcart">Shopping cart</MenuLink>
-            <button onClick={() => dispatch(logOut())}>Logout</button>
+            <button
+              onClick={() => {
+                dispatch(logOut());
+                navigate("/");
+              }}
+            >
+              Logout
+            </button>
           </div>
         ) : (
           <MenuLink to="/login">Login</MenuLink>

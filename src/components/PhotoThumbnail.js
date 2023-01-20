@@ -2,14 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./PhotoThumbnail.css";
 
-export default function PhotoThumbnail({ id, galleryId, name, imageUrl }) {
+export const PhotoThumbnail = ({ id, galleryId, name, imageUrl }) => {
   return (
     <div>
-      {name}
       <img width="200px" height="200px" src={imageUrl} alt={name} />
-      <NavLink to={`/gallery/${galleryId}/photos/${id}`}>
+      <p>{name}</p>
+      <NavLink to={`/gallery/${galleryId}/photo/${id}`}>
         <button>View photo</button>
       </NavLink>
     </div>
   );
-}
+};

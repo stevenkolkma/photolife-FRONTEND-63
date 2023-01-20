@@ -1,22 +1,38 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Photo from "../components/Photo";
-import {selectAllGalleries} from "../store/gallery/selectors";
+import { selectUserDetails } from "../store/user/selectors";
+import { fetchUserDetails } from "../store/user/thunks";
 
 export const UserDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const allGalleries = useSelector(selectAllGalleries);
+  const userDetails = useSelector(selectUserDetails);
 
-  if (!photoDetails) return <div>Loading...</div>;
+  useEffect(() => {
+    dispatch(fetchUserDetails(id));
+  }, [dispatch, id]);
+  console.log(userDetails);
+  if (!userDetails) return <div>Loading...</div>;
 
   return (
-    <div className="container-userdetailspage">
-
-      <h1>User details of {allGalleries.name}</h1>
-
+    <div className="container-userDetails">
+      <NavLink to={`/photomarket`}>View PhotoMarket</NavLink>
+      <h1 className="title">User details of {userDetails.name}</h1>
+      <h2 className="subtitle">Avatar</h2>
+      <div className="photo-container">
+        <img
+          src={userDetails.avatar}
+          alt={userDetails.name}
+          className="avatar-img"
+        />
+        <div className="user-meta-data">
+          <p>Id: {userDetails.id}</p>
+          <p>Name: {userDetails.name}</p>
+          <p>Email: {userDetails.email}</p>
+        </div>
+      </div>
     </div>
   );
 };

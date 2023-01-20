@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import PhotoThumbnail from "../components/PhotoThumbnail";
+import { PhotoThumbnail } from "../components/PhotoThumbnail";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectGalleryDetails } from "../store/gallery/selectors";
@@ -16,6 +16,7 @@ export const GalleryDetails = () => {
   const token = useSelector(selectToken);
   const galleryDetails = useSelector(selectGalleryDetails);
   const user = useSelector(selectUser);
+  const [showPostPhoto, setShowPostPhoto] = useState(false);
 
   useEffect(() => {
     dispatch(fetchGalleryDetails(id));
@@ -30,7 +31,7 @@ export const GalleryDetails = () => {
           <button>View the photomarket</button>
         </Link>
         {token && (
-          <Link to="/mygalleries">
+          <Link to="/mygallery">
             <button>View my galleries</button>
           </Link>
         )}
@@ -39,7 +40,7 @@ export const GalleryDetails = () => {
       <div className="photos-section">
         <h2>Photos</h2>
         {galleryDetails.photos ? (
-          <div className="photos-grid">
+          <div style={{ display: "flex" }}>
             {galleryDetails.photos.map((photo, index) => {
               return (
                 <div key={index} className="photo-thumbnail">
