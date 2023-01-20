@@ -57,7 +57,7 @@ export const PhotoDetails = () => {
             </span>
           ) : null}
           {showEditPhoto && <EditPhotoForm />}
-          <h1 className="title">Photo details of {photoDetails.name}</h1>
+          <h2 className="title">Photo details of {photoDetails.name}</h2>
           <h2 className="subtitle">The picture</h2>
           <div className="photo-container">
             <img
@@ -66,9 +66,15 @@ export const PhotoDetails = () => {
               className="photo-img"
             />
             <div className="photo-meta-data">
-              <p>Caption: {photoDetails.caption}</p>
-              <p>MetaData: {photoDetails.metaData}</p>
-              <p>Price: {photoDetails.price}</p>
+              <p>
+                <b>Caption:</b> {photoDetails.caption}
+              </p>
+              <p>
+                <b>MetaData:</b> {photoDetails.metaData}
+              </p>
+              <p>
+                <b>Price:</b> {photoDetails.price}€
+              </p>
               {token && (
                 <div className="add-to-cart-container">
                   <button

@@ -46,9 +46,11 @@ export const userSlice = createSlice({
       });
     },
     deleteGalleryAction: (state, action) => {
-      state.myGalleries = state.myGalleries.filter(
-        (gallery) => gallery.id !== action.payload
+      const updatedGalleries = state.myGalleries.filter(
+        (gallery) => gallery.id !== action.payload.id
       );
+      // console.log(updatedGalleries);
+      state.myGalleries = updatedGalleries;
     },
   },
 });

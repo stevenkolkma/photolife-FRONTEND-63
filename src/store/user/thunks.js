@@ -10,12 +10,15 @@ import {
   setAllUsers,
   setUserDetails,
   postNewGalleryAction,
+  updateGalleryAction,
+  deleteGalleryAction,
 } from "./slice";
 import {
   deletePhotoAction,
   postNewPhotoAction,
   updatePhotoAction,
 } from "../gallery/slice";
+import { fetchGalleryDetails } from "../gallery/thunks";
 
 //GET all users
 export const fetchAllUsers = () => async (dispatch, getState) => {
@@ -41,41 +44,6 @@ export const fetchUserDetails = (id) => async (dispatch, getState) => {
   } catch (e) {
     console.log(e.message);
   }
-};
-
-export const postNewGallery = (galleryData) => {
-  return async (dispatch, getState) => {
-    try {
-      const { token } = getState().user;
-      dispatch(appLoading());
-      console.log(galleryData);
-      const { name, description, date, thumbnail, userId } = galleryData;
-      const response = await axios.post(
-        `${apiUrl}/galleries/`,
-        {
-          name,
-          description,
-          date,
-          thumbnail,
-          userId,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(response.data);
-      console.log("Response postNewGallery", response);
-      dispatch(
-        showMessageWithTimeout("success", false, response.data.message, 3000)
-      );
-      dispatch(postNewGalleryAction(response.data));
-      dispatch(appDoneLoading());
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
 };
 
 export const postNewPhoto = (photoData) => {
@@ -118,8 +86,9 @@ export const postNewPhoto = (photoData) => {
       dispatch(
         showMessageWithTimeout("success", false, response.data.message, 3000)
       );
-
-      dispatch(postNewPhotoAction(response.data));
+      dispatch(fetchGalleryDetails(galleryId));
+      // dispatch(postNewPhotoAction(response.data));
+      // dispatch(getUserWithStoredToken());
       dispatch(appDoneLoading());
     } catch (e) {
       console.log(e.message);
@@ -177,6 +146,96 @@ export const deletePhoto = (photoId) => {
 
       console.log("Photo deleted?", response.data);
       dispatch(deletePhotoAction(photoId));
+      dispatch(appDoneLoading());
+    } catch (e) {
+      console.error(e);
+    }
+  };
+};
+export const postNewGallery = (galleryData) => {
+  return async (dispatch, getState) => {
+    try {
+      const { token } = getState().user;
+      dispatch(appLoading());
+      console.log(galleryData);
+      const { name, description, date, thumbnail, userId } = galleryData;
+      const response = await axios.post(
+        `${apiUrl}/galleries/`,
+        {
+          name,
+          description,
+          date,
+          thumbnail,
+          userId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+      console.log("Response postNewGallery", response);
+      dispatch(
+        showMessageWithTimeout("success", false, response.data.message, 3000)
+      );
+      dispatch(postNewGalleryAction(response.data));
+      dispatch(appDoneLoading());
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+};
+
+export const editGallery = (id, name, description, date, thumbnail) => {
+  return async (dispatch, getState) => {
+    try {
+      const { token } = getState().user;
+      dispatch(appLoading());
+
+      const response = await axios.put(
+        `${apiUrl}/galleries/${id}`,
+        {
+          name,
+          description,
+          date,
+          thumbnail,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response);
+
+      dispatch(
+        showMessageWithTimeout("success", false, "update successfull", 3000)
+      );
+      dispatch(updateGalleryAction(response.data));
+      dispatch(appDoneLoading());
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+};
+
+export const deleteGallery = (galleryId) => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    const { token } = getState().user;
+    // console.log("Delete thunk - mySpace: ", mySpace);
+    // console.log("Delete thunk - token: ", token);
+    console.log(galleryId);
+    try {
+      const response = await axios.delete(`${apiUrl}/galleries/${galleryId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log("Gallery deleted?", response.data);
+      dispatch(deleteGalleryAction(galleryId));
       dispatch(appDoneLoading());
     } catch (e) {
       console.error(e);
@@ -320,6 +379,8 @@ export const getUserWithStoredToken = () => {
       const response = await axios.get(`${apiUrl}/auth/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
+      console.log(response);
 
       // token is still valid
       dispatch(

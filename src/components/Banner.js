@@ -2,9 +2,9 @@ export const Banner = () => {
   return (
     <div>
       <img
-        width="1000px"
-        height="10px"
-        src="https://kinsta.com/wp-content/uploads/2020/05/wordpress-photo-gallery-plugins-1-1024x512.jpg"
+        width="100%"
+        height="100%"
+        src="https://res.cloudinary.com/dpsnohshv/image/upload/v1674207422/gfiu9klwg8xuzvnzjxfk.jpg"
         alt="banner"
       />
     </div>

@@ -58,7 +58,7 @@ export const PhotoUpload = (props) => {
     };
     console.log("photoData", photoData);
     dispatch(postNewPhoto(photoData));
-    refreshPage();
+    // refreshPage();
   };
 
   return (

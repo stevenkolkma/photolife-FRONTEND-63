@@ -60,8 +60,8 @@ export const PhotoMarket = () => {
         </select>
       </div>
       <div className="results-container">
+        <h2>Photos</h2>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          <h2>Photos</h2>
           {searchBy === "all" &&
             filteredPhotos.map((photo, index) => (
               <div key={index} className="photo-thumbnail">
@@ -76,8 +76,11 @@ export const PhotoMarket = () => {
               </div>
             ))}
         </div>
+        <br />
+        <br />
+        <br />
+        <h2>Galleries</h2>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          <h2>Galleries</h2>
           {searchBy === "all" &&
             filteredGalleries.map((gallery, index) => (
               <div key={index} className="gallery-thumbnail">
@@ -92,8 +95,11 @@ export const PhotoMarket = () => {
               </div>
             ))}
         </div>
+        <br />
+        <br />
+        <br />
+        <h2>Users</h2>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          <h2>Users</h2>
           {searchBy === "all" &&
             filteredUsers.map((user, index) => (
               <div key={index} className="user-thumbnail">

@@ -14,16 +14,18 @@ export const Navigation = () => {
 
   return (
     <Nav>
-      <Logo href="/">
-        Photo<span>Life</span>
-      </Logo>
+      <Link to="/">
+        <Logo>
+          Photo<span>Life</span>
+        </Logo>
+      </Link>
       <Hamburger onClick={() => setOpen(!open)}>
         <span />
         <span />
         <span />
       </Hamburger>
       <Menu open={open}>
-        <MenuLink to="/photomarket">See PhotoMarket</MenuLink>
+        <MenuLink to="/photomarket">PhotoMarket</MenuLink>
         {token ? (
           <div>
             <MenuLink to="/mygallery">My Galleries</MenuLink>
@@ -51,7 +53,7 @@ const MenuLink = styled(Link)`
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  color: black;
+  color: white;
   transition: all 0.3s ease-in;
   font-size: 0.9rem;
 
@@ -66,7 +68,7 @@ const Nav = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  background: #e6ece7;
+  background: #21130d;
   /* position: absolute; */
   top: 0;
   left: 0;
@@ -75,7 +77,7 @@ const Nav = styled.div`
 
 const Logo = styled.a`
   padding: 1rem 0;
-  color: black;
+  color: white;
   text-decoration: none;
   font-weight: 800;
   font-size: 1.7rem;

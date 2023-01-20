@@ -20,7 +20,7 @@ export default function Footer() {
               <a href="#">Privacy Policy</a>
             </li>
           </FooterList>
-          <p>Copyright 2021, PhotoWorks</p>
+          <p>Copyright 2023, PhotoLife</p>
         </FooterContainer>
       </FooterWrapper>
     </div>

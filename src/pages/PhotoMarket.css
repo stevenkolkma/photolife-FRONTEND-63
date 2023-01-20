@@ -5,8 +5,9 @@ body {
 
 .photomarket-container {
   margin: 0 auto;
+  margin-top: 1rem;
   width: 100%;
-  max-width: 1200px;
+  max-width: 90%;
   background-color: #fff;
   padding: 20px;
   box-shadow: 0 0 10px #ccc;

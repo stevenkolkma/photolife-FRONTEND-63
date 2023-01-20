@@ -62,6 +62,15 @@ export const ShoppingCart = () => {
     inputRef.current.value = "";
   };
 
+  if (cartItems.length === 0)
+    return (
+      <div className="shopping-cart-container">
+        <h1>Shopping Cart</h1>
+        <p>You have no cart items! </p>
+        <p>See the PhotoMarket to add photos to your shopping cart.</p>
+      </div>
+    );
+
   return (
     <div className="shopping-cart-container">
       <h1>Shopping Cart</h1>

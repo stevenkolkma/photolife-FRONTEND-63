@@ -24,7 +24,7 @@ export const EditPhotoForm = () => {
   }
   return (
     <div>
-      <h3>Edit space: </h3>
+      <h3>Edit photo: </h3>
       <form onSubmit={submitEditedSpace}>
         <p>
           <Input
